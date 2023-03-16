@@ -8,12 +8,15 @@ This is a Python program that searches for known motifs in a DNA sequence and ma
 ## Requirements
 
   Python 3.x
+  
   pycairo
+  
   argparse
   
 ## The program requires two inputs
 
   A FASTA file containing DNA sequences (sequences up to 1000 bases)
+  
   A motif file containing motifs (up to 10 bases each, one motif per line in a text file)
   
 ## Program Capability
