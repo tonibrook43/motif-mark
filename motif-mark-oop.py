@@ -24,8 +24,6 @@ def get_args():
 args=get_args()
 
 
-# to run script: ./motif-mark-oop.py -f /Users/tonibrooks/bioinfo/OOP/oneline_fasta.fa -m /Users/tonibrooks/bioinfo/OOP/Fig_1_motifs.txt -o /Users/tonibrooks/bioinfo/OOP/motif_outfile.txt
-
 ##################
 # Pycairo set-up #
 ##################
@@ -37,7 +35,7 @@ def pycairo_set():
     height = 1000
 
     #surface variable with the specified width and height
-    surface = cairo.ImageSurface(cairo.FORMAT_RGB24, width, height) #cairo.FORMAT_RGB24 did not work but cairo.FORMAT_ARGB32 did so yay
+    surface = cairo.ImageSurface(cairo.FORMAT_RGB24, width, height)
 
     #this creates a new context; we then use the methods of the context to 'draw' on the surface i.e., drawing lines and shapes
     context = cairo.Context(surface)
@@ -150,19 +148,15 @@ class Exon:
     
     def draw_exon(self, context):
     
-        # Width of 15 for a thicker line
+        #Width of 15 for a thicker line
         self.context.set_line_width(15)
         self.context.set_source_rgba(0.0,0.0,0.0) #exons will be in a dif color than intron
         self.context.fill() #fill the exon with color
 
-
-        #how far away from the margin on the x-axis
         LEFT_MARGIN_X = 0
 
-        #start position
-        self.context.move_to(self.exon_start+LEFT_MARGIN_X, self.exon_start_end)        #(x,y)
+        self.context.move_to(self.exon_start+LEFT_MARGIN_X, self.exon_start_end)  
         
-        # end position of line from start position
         self.context.line_to(self.exon_end+LEFT_MARGIN_X, self.exon_start_end)
         self.context.stroke()
 
@@ -181,17 +175,13 @@ class Motif:
     
     def draw_motif(self, context):
         
-        # Width of 7 for a fine line and colors based on motif
         self.context.set_line_width(7)
         self.context.set_source_rgba(*self.color)
         
-        #how far away from the margin on the x-axis
         LEFT_MARGIN_X = 0
 
-        #start position
-        self.context.move_to(self.motif_start+LEFT_MARGIN_X , self.y_start_end)        #(x,y)
-        
-        # end position of line from start position
+        self.context.move_to(self.motif_start+LEFT_MARGIN_X , self.y_start_end)
+   
         self.context.line_to(self.motif_stop+LEFT_MARGIN_X, self.y_start_end)
         self.context.stroke()
 
@@ -204,7 +194,6 @@ class MotifIUPAC:
         self.character_counts = []
    
     def parse_motifs(self):
-        # motif_dict={}
         with open(self.motifs_file, 'r') as motifs_file:
             character_count =0
             for i, line in enumerate(motifs_file): 
